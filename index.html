@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpsecioV3.io</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Opsecio<span>V3</span></div>
+        <nav>
+            <button class="tab-btn active" data-tab="ip-tool"><i class="fas fa-globe"></i> IP Info</button>
+            <button class="tab-btn" data-tab="exif-tool"><i class="fas fa-camera"></i> EXIF Viewer</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- IP TOOL SECTION -->
+        <section id="ip-tool" class="tool-section active">
+            <div class="input-container">
+                <input type="text" id="ip-input" placeholder="Enter IP Address (leave empty for yours)">
+                <button onclick="fetchIPData()">Analyze</button>
+            </div>
+            
+            <div id="ip-results" class="results-grid hidden">
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> Connection Details</h3>
+                    <p><strong>IP:</strong> <span id="res-ip">-</span></p>
+                    <p><strong>Hostname:</strong> <span id="res-hostname">-</span></p>
+                    <p><strong>ISP:</strong> <span id="res-isp">-</span></p>
+                    <p><strong>Org:</strong> <span id="res-org">-</span></p>
+                    <p><strong>ASN:</strong> <span id="res-asn">-</span></p>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p><strong>City:</strong> <span id="res-city">-</span></p>
+                    <p><strong>Region:</strong> <span id="res-region">-</span></p>
+                    <p><strong>Country:</strong> <span id="res-country">-</span></p>
+                    <p><strong>Postal Code:</strong> <span id="res-zip">-</span></p>
+                    <p><strong>Coordinates:</strong> <span id="res-coords">-</span></p>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-clock"></i> Time Zone</h3>
+                    <p><strong>Timezone:</strong> <span id="res-timezone">-</span></p>
+                    <p><strong>Local Time:</strong> <span id="res-localtime">-</span></p>
+                    <p><strong>UTC Offset:</strong> <span id="res-offset">-</span></p>
+                </div>
+                
+                <div class="card full-width">
+                    <h3><i class="fas fa-map"></i> Map View</h3>
+                    <a id="map-link" href="#" target="_blank" class="btn-small">View on Google Maps</a>
+                </div>
+            </div>
+            
+            <div id="ip-loading" class="loader hidden">Loading...</div>
+            <div id="ip-error" class="error-msg hidden"></div>
+        </section>
+
+        <!-- EXIF TOOL SECTION -->
+        <section id="exif-tool" class="tool-section hidden">
+            <div class="input-container center">
+                <label for="exif-file" class="file-label">
+                    <i class="fas fa-cloud-upload-alt"></i> Select Image or Video
+                </label>
+                <input type="file" id="exif-file" accept="image/*,video/*,audio/*">
+            </div>
+            
+            <div id="exif-results" class="results-list hidden">
+                <!-- Results injected here via JS -->
+            </div>
+            
+            <div id="exif-loading" class="loader hidden">Reading Metadata...</div>
+            <div id="exif-error" class="error-msg hidden"></div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/ip-tools.js"></script>
+    <script src="js/exif-tools.js"></script>
+</body>
+</html>
